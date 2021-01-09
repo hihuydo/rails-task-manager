@@ -9,15 +9,26 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task.completed == true
-      @test = "This task is completed"
+      @status = "This task is completed"
     else
-      @test = "This task is not completed yet"
+      @status = "This task is not completed yet"
     end
   end
 
-  # private
+  def new
+    @task = Task.new # Needed for form_for
+  end
 
-  # def find_task
-  #   # @task = Task.find(params[:id])
-  # end
+  def create
+    @task = Task.new(task_params)
+    @task.save
+
+    redirect_to tasks_path
+  end
+
+  private
+
+  def task_params
+    params.require(:task).permit(:title, :details)
+  end
 end
