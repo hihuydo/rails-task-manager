@@ -1,0 +1,11 @@
+<h1 class="mb-5">Edit task</h1>
+
+<%= form_for(@task) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :details %>
+  <%= f.text_field :details %>
+  <%= f.submit 'Edit Task' %>
+<% end %>
+
+<div class="mt-5"><%= link_to 'Back to task', task_path  %></div>
